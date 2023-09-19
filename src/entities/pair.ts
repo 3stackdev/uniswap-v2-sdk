@@ -16,14 +16,14 @@ import {
   ZERO,
   BASIS_POINTS,
   ONE_HUNDRED_PERCENT,
-  ZERO_PERCENT
+  ZERO_PERCENT,
 } from '../constants'
 import { InsufficientReservesError, InsufficientInputAmountError } from '../errors'
 
 export const computePairAddress = ({
   factoryAddress,
   tokenA,
-  tokenB
+  tokenB,
 }: {
   factoryAddress: string
   tokenA: Token
@@ -52,8 +52,8 @@ export class Pair {
       tokenAmounts[0].currency.chainId,
       Pair.getAddress(tokenAmounts[0].currency, tokenAmounts[1].currency),
       18,
-      'UNI-V2',
-      'Uniswap V2'
+      'SLPT',
+      'Shinobi LP Token'
     )
     this.tokenAmounts = tokenAmounts as [CurrencyAmount<Token>, CurrencyAmount<Token>]
   }
@@ -219,7 +219,7 @@ export class Pair {
 
     return [
       outputAmountAfterTax,
-      new Pair(inputReserve.add(inputAmountAfterTax), outputReserve.subtract(outputAmountAfterTax))
+      new Pair(inputReserve.add(inputAmountAfterTax), outputReserve.subtract(outputAmountAfterTax)),
     ]
   }
 
